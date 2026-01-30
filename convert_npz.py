@@ -44,13 +44,6 @@ def convert_npz(batch_size, use_size, npz_file="full_dataset_2000.npz"):
     Y_seq = Y_seq.reshape(batch_size, seq_len, 1)
     print("Converted Y shape:", Y_seq.shape)
 
-    # --- Optional: convert to float16 to save memory ---
-    X_seq = X_seq.astype(np.float32)  # change to float16 if needed
-    Y_seq = Y_seq.astype(np.float32)
-
-    # --- Save to new file ---
-    np.savez("pinnsformer_ready_data.npz", X=X_seq, Y=Y_seq)
-
         # Save in batches
     for i in range(0, min(X_seq.shape[0, use_size]), batch_size):
         start = i
