@@ -7,14 +7,13 @@
 #SBATCH --time=01:00:00               # Walltime (adjust as needed)
 #SBATCH --output=logs/convert_%j.out  # Log file
 
-# Load Python or activate your environment
-module load python/3.12
-# Or if using conda:
-# source ~/miniconda3/etc/profile.d/conda.sh
-# conda activate myenv
+# Load Anaconda module
+module load anaconda3
 
-# Navigate to your repo folder
-cd /home/your_username/pinnsformer/
+# Activate your pinnsformer environment
+
+# Navigate to your actual repo folder
+cd /home/hice1/acheng324/ondemand/PINNsformer/
 
 # Make sure the logs folder exists
 mkdir -p logs
