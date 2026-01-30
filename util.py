@@ -62,4 +62,4 @@ def get_data_3d(x_range, y_range, t_range, x_num, y_num, t_num):
     x_mesh, y_mesh, t_mesh = np.mgrid[x_range[0]:x_range[1]+step_x:step_x,y_range[1]:y_range[1]+step_y:step_y,t_range[0]:t_range[1]+step_t:step_t]
     b_upper = np.squeeze(np.concatenate((np.expand_dims(x_mesh, -1), np.expand_dims(y_mesh, -1), np.expand_dims(t_mesh, -1)), axis=-1))[1:-1].reshape(-1,3)
 
-    return res, b_left, b_right, b_upper, b_lower
+    return res, b_left, b_right, b_upper, b_lower   

@@ -24,7 +24,7 @@ Please adapt the model path accordingly.
 
 ## Contact
 
-If you have any questions about the code, please contact Leo Zhiyuan Zhao at  ```leozhao1997[at]gatech[dot]edu```.
+If you have any questions about the code, please contact Leo Zhiyuan Zhao at `leozhao1997[at]gatech[dot]edu`.
 
 ## Citation
 
@@ -38,3 +38,13 @@ If you find our work useful, please cite our work:
   year={2023}
 }
 ```
+
+## full_dataset_2000.npz format
+
+npz file files:
+['X', 'Y', 'channel_names']
+X shape = (2000, 1, 8, 504, 504)
+Y shape = (2000, 1, 504, 504)
+channel_names = (8,)
+
+- channels = ['SDF' 'Bldg_height' 'Z_relative' 'U_over_Uref' 'X_local' 'Y_local' 'dir_sin' 'dir_cos']
