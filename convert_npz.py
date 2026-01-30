@@ -9,6 +9,9 @@ def convert_npz(npz_file="full_dataset_2000.npz"):
     # --- Check batch dimensions ---
     if Y.ndim == 3:  # expand batch dimension if needed
         Y = np.expand_dims(Y, axis=0)
+
+    print("Original X shape:", X.shape)
+    print("Original Y shape:", Y.shape)
     
     # Remove the singleton dimension
     X = np.squeeze(X, axis=1)  # now [2000, 8, 504, 504]
@@ -16,9 +19,6 @@ def convert_npz(npz_file="full_dataset_2000.npz"):
 
     batch_size, channels, H, W = X.shape
     seq_len = H * W
-
-    print("Original X shape:", X.shape)
-    print("Original Y shape:", Y.shape)
 
     # --- Rearrange channels: coordinates first ---
     # Assuming original X channels order: [SDF, Bldg_height, Z_relative, U_at_z, X_coords, Y_coords, dir_sin, dir_cos]
@@ -40,7 +40,7 @@ def convert_npz(npz_file="full_dataset_2000.npz"):
     print("Converted X shape:", X_seq.shape)
 
     # Y: flatten similarly
-    Y_seq = np.transpose(Y, (0, 2, 3, 1))  # [batch, H, W, 1]
+    Y_seq = np.transpose(Y[..., np.newaxis], (0, 2, 3, 1))  # [batch, H, W, 1]
     Y_seq = Y_seq.reshape(batch_size, seq_len, 1)
     print("Converted Y shape:", Y_seq.shape)
 
@@ -53,3 +53,4 @@ def convert_npz(npz_file="full_dataset_2000.npz"):
 
 
 convert_npz()
+print("done")
