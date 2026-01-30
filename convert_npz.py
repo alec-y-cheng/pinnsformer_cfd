@@ -57,5 +57,5 @@ def convert_npz(batch_size, use_size, npz_file="full_dataset_2000.npz"):
     print("All batches saved!")
 
 if __name__ == "__main__":
-    convert_npz(batch_size=50, use_size = 50)
+    convert_npz(batch_size=100, use_size = 1000)
     print("done")
