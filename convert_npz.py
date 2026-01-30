@@ -1,6 +1,6 @@
 import numpy as np
 
-def convert_npz(batch_size, use_size, npz_file="full_dataset_2000.npz"):
+def convert_npz(batch_size, npz_file="full_dataset_2000.npz"):
     # - channels = ['SDF' 'Bldg_height' 'Z_relative' 'U_over_Uref' 'X_local' 'Y_local' 'dir_sin' 'dir_cos']
     data = np.load(npz_file)
     X = data["X"]  # [batch, channels=8, H, W]
@@ -45,9 +45,9 @@ def convert_npz(batch_size, use_size, npz_file="full_dataset_2000.npz"):
     print("Converted Y shape:", Y_seq.shape)
 
         # Save in batches
-    for i in range(0, min(X_seq.shape[0], use_size), batch_size):
+    for i in range(0, X_seq.shape[0], batch_size):
         start = i
-        end = min(i + batch_size, min(X_seq.shape[0], use_size))
+        end = min(i + batch_size, X_seq.shape[0])
         X_batch = X_seq[start:end]
         Y_batch = Y_seq[start:end]
         filename = f"pinnsformer_ready_data_part{start}.npz"
@@ -57,5 +57,5 @@ def convert_npz(batch_size, use_size, npz_file="full_dataset_2000.npz"):
     print("All batches saved!")
 
 if __name__ == "__main__":
-    convert_npz(batch_size=100, use_size = 1000)
+    convert_npz(batch_size=500)
     print("done")
