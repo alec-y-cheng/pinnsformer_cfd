@@ -8,9 +8,14 @@
 #SBATCH --output=logs/train_%j.out
 
 module load anaconda3
-source ~/miniconda3/etc/profile.d/conda.sh
-conda activate pinnsformer
+conda activate myenv
 
 cd ~/ondemand/PINNsformer
+mkdir -p logs
 
-python train_pinnsformer.py
+nvidia-smi
+which python
+python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0))"
+
+
+python train.py
