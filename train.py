@@ -39,7 +39,7 @@ def main():
     print("Using device:", device)
 
     # --- Load dataset ---
-    dataset = MyDataset("pinnsformer_ready_data_part0.npz", patch_size=2048)
+    dataset = MyDataset("pinnsformer_ready_data_part0.npz", patch_size=4092)
     loader = DataLoader(dataset, batch_size=2, shuffle=True)
 
     # --- Initialize model ---
