@@ -2,7 +2,7 @@ import torch
 import os
 from torch.utils.data import DataLoader, Dataset
 import numpy as np
-from pinnsformer_cfd.model.pinnsformer import PINNsformer # pinnsformer_cfd should be root directory
+from PINNsformer.model.pinnsformer import PINNsformer # pinnsformer_cfd should be root directory
 
 class MyDataset(Dataset):
     def __init__(self, npz_file, patch_size):
