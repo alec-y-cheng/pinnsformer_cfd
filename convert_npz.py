@@ -1,6 +1,6 @@
 import numpy as np
 
-def convert_npz(batch_size, npz_file="full_dataset_2000.npz"):
+def convert_npz(npz_file="full_dataset_2000.npz"):
     # - channels = ['SDF' 'Bldg_height' 'Z_relative' 'U_over_Uref' 'X_local' 'Y_local' 'dir_sin' 'dir_cos']
     data = np.load(npz_file)
     X = data["X"]  # [batch, channels=8, H, W]
@@ -57,5 +57,5 @@ def convert_npz(batch_size, npz_file="full_dataset_2000.npz"):
     print("All batches saved!")
 
 if __name__ == "__main__":
-    convert_npz(batch_size=500)
+    convert_npz()
     print("done")
