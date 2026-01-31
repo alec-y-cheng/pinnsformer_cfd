@@ -98,7 +98,8 @@ class PINNsformer(nn.Module):
     def __init__(self, d_out, d_model, d_hidden, N, heads):
         super(PINNsformer, self).__init__()
 
-        self.linear_emb = nn.Linear(2, d_model)
+        #self.linear_emb = nn.Linear(2, d_model)
+        self.linear_emb = nn.Linear(8, d_model)
 
         self.encoder = Encoder(d_model, N, heads)
         self.decoder = Decoder(d_model, N, heads)
@@ -110,6 +111,17 @@ class PINNsformer(nn.Module):
             nn.Linear(d_hidden, d_out)
         ])
 
+    def forward(self, x):
+        src = self.linear_emb(x)
+
+        e_outputs = self.encoder(src)
+        d_output = self.decoder(src, e_outputs)
+        output = self.linear_out(d_output)
+        # pdb.set_trace()
+        # raise Exception('stop')
+        return output
+
+    """
     def forward(self, x, t):
         src = torch.cat((x,t), dim=-1)
         src = self.linear_emb(src)
@@ -120,3 +132,4 @@ class PINNsformer(nn.Module):
         # pdb.set_trace()
         # raise Exception('stop')
         return output
+    """
